@@ -1,6 +1,9 @@
+from alunos import cadastrar_aluno
+from notas import lancar_nota
+from notas import media, relatorio_estatistico
 def sistema_menu ():
     while True:
-        print(f"""Opções dispóniveis:  
+        print("""Opções dispóniveis:  
             1- Cadastrar Aluno
             2- Lançar nota
             3- Relátorio estatistico
@@ -16,8 +19,11 @@ def opcoes (numero):
         case 2:
             return lancar_nota()
         case 3:
-            return relatorio_statistico()
+            return relatorio_estatistico()
         case 4:
             return media()
         case 5:
             return sair()
+        
+def sair():
+    return "Obrigado por iniciar nosso sistema", False

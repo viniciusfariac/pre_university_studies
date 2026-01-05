@@ -1,6 +1,6 @@
 from alunos import cadastrar_aluno
-from notas import lancar_nota
-from notas import media, relatorio_estatistico
+# from notas import lancar_nota
+# from notas import media, relatorio_estatistico
 def sistema_menu ():
     while True:
         print("""Opções dispóniveis:  
@@ -9,7 +9,7 @@ def sistema_menu ():
             3- Relátorio estatistico
             4- Ver média
             5- Sair""")
-        opcao = input("Digite o que quer fazer")
+        opcao = int(input("Digite o que quer fazer: "))
         opcoes(opcao)
 
 def opcoes (numero):
@@ -27,3 +27,6 @@ def opcoes (numero):
         
 def sair():
     return "Obrigado por iniciar nosso sistema", False
+
+if __name__ == "__main__":
+    sistema_menu()

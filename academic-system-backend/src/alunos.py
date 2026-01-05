@@ -97,4 +97,5 @@ def verifica_curso(curso):
     except ValueError as e:
         print(e)
 
-cadastrar_aluno()
+if __name__ == "__main__":
+    cadastrar_aluno()

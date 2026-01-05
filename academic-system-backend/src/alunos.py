@@ -3,11 +3,36 @@ from datetime import datetime
 
 def cadastrar_aluno():
     try:
-        nome_aluno, endereco, data_nascimento, turma = receber_dados()
+        conexao = configuracao_banco()
+        cursor = conexao.cursor()
+        nome_aluno, endereco, data_nascimento, turma_id, curso_id = receber_dados()
         now = datetime.now()
-        insert_matricula = "INSERT INTO Matricula (data_matricula, turmaID)"
+        id_matricula = cadastrar_matricula(turma_id, now)
+        query = "INSERT INTO alunos (name, endereco, data_nascimento, matriculaID) VALUES (%s, %s, %s, %s)"
+        values_alunos = nome_aluno, endereco, data_nascimento, id_matricula
+        cursor.execute(query, values_alunos)
+        conexao.commit()
+        encerra_conexao(conexao)
+        encerra_conexao(cursor)
+
     except ValueError:
         pass
+def cadastrar_matricula(turma, now):
+    try:
+        conexao = configuracao_banco()
+        cursor = conexao.cursor()
+        query = """INSERT INTO Matricula (data_matricula, turmaID) 
+        VALUES (%s, %s)
+        RETURNING matriculaID"""
+        cursor.execute(query, (now, turma))
+        id = cursor.fetchone()[0]
+        conexao.commit()
+        print("Dados inseridos com Sucesso")
+        encerra_conexao(conexao)
+        encerra_conexao(cursor)
+        return id
+    except ValueError as e:
+        print(f"Erro para cadastrar matricula {e}")
 
 def receber_dados():
     while True:

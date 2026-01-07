@@ -1,5 +1,5 @@
 from alunos import cadastrar_aluno
-# from notas import lancar_nota
+from notas import lancar_nota
 # from notas import media, relatorio_estatistico
 def sistema_menu ():
     while True:

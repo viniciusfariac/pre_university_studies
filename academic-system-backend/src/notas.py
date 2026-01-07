@@ -11,7 +11,7 @@ def lancar_nota ():
         quantidade_nota = int(input("Digite quantas notas gostaria de colocar: "))
         for i in range(quantidade_nota):
             
-            nota = input(f"Digite a {i + 1} nota: ")
+            nota = int(input(f"Digite a {i + 1} nota: "))
             if nota < 0 or nota > 10:
                 raise print("Nota deve estar entre 0 e 10")
 
@@ -33,7 +33,7 @@ def lancar_nota ():
 
     except Exception as e:
         print("Erro inesperado", e)    
-        
+
     except psycopg2.Error as e:
         print("Erro no banco", e)
 

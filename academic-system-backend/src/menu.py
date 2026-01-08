@@ -1,6 +1,6 @@
 from alunos import cadastrar_aluno
 from notas import lancar_nota
-# from notas import media, relatorio_estatistico
+from notas_calculos import media, relatorio
 def sistema_menu ():
     while True:
         print("""Opções dispóniveis:  
@@ -19,7 +19,7 @@ def opcoes (numero):
         case 2:
             return lancar_nota()
         case 3:
-            return relatorio_estatistico()
+            return relatorio()
         case 4:
             return media()
         case 5:

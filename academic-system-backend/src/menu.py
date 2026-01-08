@@ -3,14 +3,17 @@ from notas import lancar_nota
 from notas_calculos import media, relatorio
 def sistema_menu ():
     while True:
-        print("""Opções dispóniveis:  
-            1- Cadastrar Aluno
-            2- Lançar nota
-            3- Relátorio estatistico
-            4- Ver média
-            5- Sair""")
-        opcao = int(input("Digite o que quer fazer: "))
-        opcoes(opcao)
+        try:
+            print("""Opções dispóniveis:  
+                1- Cadastrar Aluno
+                2- Lançar nota
+                3- Relátorio estatistico
+                4- Ver média
+                5- Sair""")
+            opcao = int(input("Digite o que quer fazer: "))
+            opcoes(opcao)
+        except ValueError as e:
+            print("Erro de entrada, digite um valor de 1 a 5")
 
 def opcoes (numero):
     match numero:

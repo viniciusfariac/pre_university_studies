@@ -41,22 +41,28 @@ def lancar_nota ():
 
 def solicitar_aluno (cursor):
     while True:
-        nome_aluno = input("Digite o aluno que vai receber a(s) nota(s): ")
         try:
-            return pesquisar_id("alunos", "aluno", nome_aluno, cursor)
+            nome_aluno = input("Digite o aluno que vai receber a(s) nota(s): ")
+            resultado = pesquisar_id("alunos", "aluno", nome_aluno, cursor)
+            if resultado is not None:
+                return resultado
         except ValueError as e:
             print("Erro de entrada", e)
 
 def solicitar_materia (cursor):
     while True:
-
-        nome_materia = input(f"Digite a matéria: ")
-
         try:
-            return pesquisar_id("Materia", "materia", nome_materia, cursor)
-        
+            nome_materia = input(f"Digite a matéria: ")
+            resultado = pesquisar_id("Materia", "materia", nome_materia, cursor)
+            if resultado is not None:
+                return resultado
+            else:
+                print("Materias disponiveis abaixo: ")
+                print(pesquisar_disponiveis("Materia", "name", cursor))
         except ValueError as e:
-            print("Erro de entrada", e)
+            print(" ")
+            
+            
 
 def socilitar_nota(i):
     while True:
@@ -80,7 +86,7 @@ def pesquisar_id(tabela, entidade_id, entidade, cursor):
         resultado = cursor.fetchone()
 
         if not resultado:
-            raise ValueError(f"Nome invalido na tabela {tabela}: {entidade}")
+            raise ValueError
         
         return resultado[0]
 
@@ -91,3 +97,12 @@ def pesquisar_id(tabela, entidade_id, entidade, cursor):
         print("Erro no banco", e)
     except Exception as e:
         print("Erro inesperado", e)
+
+def pesquisar_disponiveis(tabela, entidade, cursor):
+    try:
+        query = f"""SELECT {entidade} FROM {tabela}"""
+        cursor.execute(query)
+        resultado = cursor.fetchall()
+        return resultado
+    except ValueError as e:
+        print("erro de entrada", e)

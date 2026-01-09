@@ -11,7 +11,9 @@ def sistema_menu ():
                 4- Ver média
                 5- Sair""")
             opcao = int(input("Digite o que quer fazer: "))
-            opcoes(opcao)
+            continuar = opcoes(opcao)
+            if continuar is False:
+                break
         except ValueError as e:
             print("Erro de entrada, digite um valor de 1 a 5")
 
@@ -27,9 +29,11 @@ def opcoes (numero):
             return media()
         case 5:
             return sair()
+        case _:
+            print("Opção inválida, digite um número de 1 a 5")
         
 def sair():
-    return "Obrigado por iniciar nosso sistema", False
+    return False
 
 if __name__ == "__main__":
     sistema_menu()

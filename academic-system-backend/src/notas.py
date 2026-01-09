@@ -42,7 +42,7 @@ def lancar_nota ():
 def solicitar_aluno (cursor):
     while True:
         try:
-            nome_aluno = input("Digite o aluno que vai receber a(s) nota(s): ")
+            nome_aluno = input("Digite o aluno: ")
             resultado = pesquisar_id("alunos", "aluno", nome_aluno, cursor)
             if resultado is not None:
                 return resultado
@@ -62,8 +62,6 @@ def solicitar_materia (cursor):
         except ValueError as e:
             print(" ")
             
-            
-
 def socilitar_nota(i):
     while True:
         try:

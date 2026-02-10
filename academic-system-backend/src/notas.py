@@ -12,7 +12,7 @@ def lancar_nota ():
         for i in range(quantidade):
             while True:
                 nota = socilitar_nota(i)
-                materia_id = solicitar_materia(cursor)
+                materia_id, nome_materia = solicitar_materia(cursor)
                 query = """INSERT INTO Nota (nota, materiaID, alunoID) VALUES
                 (%s, %s, %s)"""
 
@@ -55,7 +55,7 @@ def solicitar_materia (cursor):
             nome_materia = input(f"Digite a matéria: ")
             resultado = pesquisar_id("Materia", "materia", nome_materia, cursor)
             if resultado is not None:
-                return resultado
+                return resultado, nome_materia
             else:
                 print("Materias disponiveis abaixo: ")
                 print(pesquisar_disponiveis("Materia", "name", cursor))
